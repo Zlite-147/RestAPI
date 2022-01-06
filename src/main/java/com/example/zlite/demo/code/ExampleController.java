@@ -1,6 +1,8 @@
 package com.example.zlite.demo.code;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,6 +32,19 @@ public class ExampleController {
 	public void getExample() {
 		System.out.println("Get Hello");
 	}
+	
+	@GetMapping("/example")
+    public String getExample1() {
+
+    	List<Integer> val=new ArrayList<>();
+    	
+    	val.add(15);
+    	val.add(78);
+    	
+    	val.stream().filter(x -> x==15).collect(Collectors.toList())
+    	.forEach(x ->System.out.println(x));
+    	return "Hello Example";
+    }
 	
 	@Autowired
 	private EmployeeServiceInterface employeeServiceInterface;
